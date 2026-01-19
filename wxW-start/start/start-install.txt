@@ -1,0 +1,25 @@
+Instalacja Linux
+
+sudo apt update
+sudo apt install libwxgtk3.2-dev wx-common wx3.2-headers
+wx-config --version
+
+Instalacja Windows
+https://www.codeblocks.org/downloads/binaries/  >>>  codeblocks-25.03mingw-setup.exe
+https://wxwidgets.org/downloads/  >>> Latest Stable Release: 3.2.9  >>>  Windows ZIP
+Rozpakuj do C:\wxWidgets-3.2.9
+Sprawdź, czy istnieje: C:\wxWidgets-3.2.9\build\msw
+W konsoli admina: 
+   set PATH=C:\Program Files\CodeBlocks\MinGW\bin;%PATH%
+   cd /d C:\wxWidgets-3.2.9\build\msw
+   mingw32-make -f makefile.gcc BUILD=debug SHARED=0
+W Code::Bloks
+   Settings → Global >>> variables dodaj nową zmienną  >>>> Name: wx  Base path:   C:\wxWidgets-3.2.9
+   Project → Build options  >>>> nazwa projektu  >>> 
+     Search directories → Compiler >>> 
+       $(#wx)\include
+       $(#wx)\lib\<TWÓJ_GCC_FOLDER>\mswud   (dla Debug)         (  C:\wxWidgets-3.2.9\lib\gcc.... MINGW - ale nie sprawdzę tego  )
+       $(#wx)\lib\<TWÓJ_GCC_FOLDER>\mswu    (dla Release)
+     Search directories → Linker  >>>>
+       $(#wx)\lib\<TWÓJ_GCC_FOLDER>
+Masakra - nie działa           

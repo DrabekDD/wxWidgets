@@ -1,0 +1,64 @@
+CO MAMY:
+
+1) wxIMPLEMENT_APP(MyApp); (w pliku xxxApp.cpp)
+2) bool MyApp::OnInit() (też w xxxApp.cpp)
+3) MyFrame::MyFrame(...) (w xxxMain.cpp)
+
+
+
+1) System uruchamia program → start main()
+
+Gdy klikasz „Run”: Windows/Linux uruchamia Twój plik wykonywalny (binarny)
+System szuka programu: main() - my go nie widzimy, bo wxWidgets generuje go za nas
+To robi właśnie wxIMPLEMENT_APP(MyApp) - tworzy main() w taki sposób, że uruchamia w nim framework (MyApp)
+(twórzy obiekt aplikacji (okno), inicjalizuje (pętla zdarzeń), ustawia ścieżki i zasoby, przygotowuje obsługę zdarzeń, timerów itd. itd.)
+My jeszcze nic nie widzimy na ekranie.
+
+
+2) Framework gotowy możemy startować
+
+wxWidgets wywołuje MyApp::OnInit() 
+OnInit() tworzy główne okno (MyFrame)
+frame->Show(true) — okno staje się widoczne
+true → aplikacja ma działać dalej - to znaczy, że program wchodzi w tryb:
+czekam na zdarzenia od systemu i reaguję na nie (klik myszy, nacisk klawisza, przesunięcie okna, zamknięcie okna (X), ... ...)
+false → framework się zamknie i program zakończy
+
+3) Ale co program ma robić
+
+MyFrame::MyFrame(...) to tu zaczynamy projektować to o co nam chodzi
+Przyciski, pola tekstowe, paski przewijania, opcje - ale pomału ... ...
+
+
+
+
+Najkrótsze streszczenie
+-----------------------
+wxIMPLEMENT_APP tworzy main()
+main() inicjuje wxWidgets i system GUI
+wxWidgets woła OnInit() jako „Twój start”
+OnInit() tworzy okno i robi Show()
+wxWidgets wchodzi w event loop i reaguje na kliknięcia itd.
+Zamknięcie okna kończy event loop i program
+
+
+streszczenie z książki
+----------------------
+
+Podsumowując, możemy opisać proces uruchamiania aplikacji wxWidgets, zamykając go w kilku
+kluczowych punktach:
+• na samym początku działania aplikacji wxWidgets, w zależności od platformy, są wywoły-
+wane dostarczane przez bibliotekę (nie przez aplikację) funkcja main(), WinMain() lub funkcja
+równoważna, przy czym wxWidgets inicjuje wewnętrzną strukturę danych i tworzy instancję
+obiektu MyApp;
+• wxWidgets wywołuje metodę MyApp::OnInit(), która z kolei tworzy instancję okna MyFrame;
+• konstruktor MyFrame tworzy za pomocą konstruktora klasy wxFrame okno programu i dodaje
+do niego ikonę, pasek menu i pasek stanu (o tym będzie mowa za chwilę);
+• funkcja MyApp::OnInit() wyświetla okno i zwraca wartość true;
+• uruchamiana jest pętla zdarzeń wxWidgets, która oczekuje na wystąpienie zdarzeń, aby przeka-
+zać je do obsługi (obsłudze zdarzeń poświęciłem kolejny rozdział).
+Program wxWidgets kończy działanie wraz z zamknięciem głównego okna (MyFrame).
+
+
+
+
