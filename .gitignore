@@ -1,1 +1,15 @@
 *.pdf
+
+# build artifacts
+**/Debug*/
+**/Release*/
+**/build*/
+**/*.o
+**/*.obj
+**/*.a
+**/*.so
+**/*.dll
+**/*.exe
+
+# precompiled headers (gcc)
+**/*.gch
