@@ -13,3 +13,45 @@
 
 # precompiled headers (gcc)
 **/*.gch
+
+# ==== BUILD OUTPUT / ŚMIECI ====
+bin/
+obj/
+.cache/
+out/
+dist/
+build/
+Build/
+cmake-build-*/
+CMakeFiles/
+Debug/
+Release/
+debug/
+release/
+x64/
+x86/
+*.layout
+*.depend
+*.cbp.user
+*.o
+*.obj
+*.a
+*.so
+*.dll
+*.exe
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+*.ninja
+.ninja_log
+.ninja_deps
+compile_commands.json
+*.gch
+*.pch
+*.log
+*.tmp
+*.bak
+*.swp
+*~
+.DS_Store
+Thumbs.db
