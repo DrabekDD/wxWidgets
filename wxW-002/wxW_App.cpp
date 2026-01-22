@@ -1,15 +1,8 @@
 #include "wxW_App.h"
 #include "wxW_Main.h"
 
-const wxString appName = "wxWidgets - modyfikujemy okno";
-
-class MyApp : public wxApp
-{
-public:
-    bool OnInit() override;
-};
-
 wxIMPLEMENT_APP(MyApp);
+const wxString appName = "wxWidgets - modyfikujemy okno";
 
 /*
 bool MyApp::OnInit()
@@ -24,11 +17,7 @@ zmiana wywołania w OnInit()
 */
 bool MyApp::OnInit()
 {
-    MyFrame* frame = new MyFrame(NULL,
-                                 wxID_ANY,
-                                 appName,
-                                 wxPoint(100, 100),
-                                 wxSize(1000, 600),
+    MyFrame* frame = new MyFrame(NULL, wxID_ANY, appName, wxPoint(100, 100), wxSize(1000, 600),
                                  wxCAPTION | wxMINIMIZE_BOX | wxCLOSE_BOX);
     frame->Show(true);
     return true;

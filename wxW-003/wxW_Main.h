@@ -5,10 +5,6 @@
 class MyFrame : public wxFrame
 {
 public:
-    MyFrame(wxWindow* parent,
-            wxWindowID id,
-            const wxString& title,
-            const wxPoint& pos,
-            const wxSize& size,
-            long style);
+    MyFrame(wxWindow* parent, wxWindowID id, const wxString& title,
+            const wxPoint& pos, const wxSize& size, long style);
 };
