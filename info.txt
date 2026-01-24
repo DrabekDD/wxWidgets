@@ -2,7 +2,7 @@ wxW-start: co jest czym w wxW (organizacja plików)
 wxW-001: pierwsze okno
 wxW-002: elementy sterujące okna
 wxW-003: robimy status bar
-wxW-004: 
-wxW-005: 
+wxW-004: struktura i tworzenie menu
+wxW-005: menu uproszczenie kodu
 wxW-006: 
 
