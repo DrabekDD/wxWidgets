@@ -5,18 +5,6 @@ const wxString appName = "Pierwszy program wxWidgets";
 // globalna nazwa aplikacji używana jako tytuł okna
 // wxString; potrafi poprawnie liczyć znak, używa UTF8, implementuje Unicod, jest portable
 
-class MyApp : public wxApp
-// Nie piszemy jak aplikacja ma działać — tylko dziedziczymy to po wxWidgets i to wxWidgets steruje "życiem aplikacji" (odpiednik czarnego okna w consoli)
-// wszystko publiczne w wxApp dziedziczy MyApp i pozostaje to publiczne
-{
-public:
-    //virtual bool OnInit(); w klasie bazowej jest virtual
-    bool OnInit() override;
-};
-// start programu, inicjalizacja, zamykanie
-// wxApp: tworzy pętlę zdarzeń i komunikuje się z systemem
-// deklaracja: będzie zdefiniowane OnInit();
-
 wxIMPLEMENT_APP(MyApp);
 // NAJWAżNIEJSZA LINIA W CAŁYM PROJEKCIE - generuje main, tworzy obiekt MyApp, czyli "odpala wxWidgets"
 // MUSI WYSTĄPIĆ DOKŁADNIE JEDEN RAZ W CAŁYM PROJEKCIE
