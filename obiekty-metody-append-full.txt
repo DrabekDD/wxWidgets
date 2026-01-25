@@ -1,0 +1,134 @@
+wxObject
+├─ wxEvtHandler
+│  ├─ (zdarzenia)
+│  │    ├─ Bind(event, handler, this, id = wxID_ANY)
+│  │    └─ Unbind(...)
+│  │
+│  └─ wxWindow
+│     ├─ (ogólne okna)
+│     │    ├─ GetSize(), GetClientSize()
+│     │    ├─ SetSize(...), SetMinSize(...), SetMaxSize(...)
+│     │    ├─ Refresh(), Update()
+│     │    └─ SetFocus()
+│     │
+│     ├─ wxTopLevelWindow
+│     │  └─ wxFrame
+│     │     ├─ ma → wxMenuBar
+│     │     │    ├─ wxFrame::SetMenuBar(wxMenuBar*)
+│     │     │    ├─ wxFrame::GetMenuBar() const
+│     │     │    └─ (rzadziej) wxFrame::DetachMenuBar()
+│     │     │
+│     │     ├─ ma → wxToolBar
+│     │     │    ├─ wxFrame::CreateToolBar(long style = ..., wxWindowID id = ...)
+│     │     │    ├─ wxFrame::GetToolBar() const
+│     │     │    └─ (rzadko) wxFrame::SetToolBar(wxToolBar*)
+│     │     │
+│     │     └─ ma → wxStatusBar
+│     │          ├─ wxFrame::CreateStatusBar(int number = 1, long style = ..., wxWindowID id = ...)
+│     │          ├─ (ręcznie) new wxStatusBar(wxWindow* parent)
+│     │          ├─ wxFrame::SetStatusBar(wxStatusBar*)
+│     │          ├─ wxFrame::GetStatusBar() const
+│     │          └─ wxFrame::SetStatusText(const wxString& text, int number = 0)
+│     │
+│     ├─ wxControl
+│     │  └─ wxControlContainer
+│     │     └─ wxToolBarBase
+│     │        └─ wxToolBar
+│     │             ├─ ma → narzędzia (tool items)
+│     │             │    ├─ wxToolBar::AddTool(int id, const wxString& label, const wxBitmapBundle& bmp, const wxString& shortHelp = "",wxItemKind kind = wxITEM_NORMAL)
+│     │             │    ├─ wxToolBar::AddCheckTool(...)
+│     │             │    ├─ wxToolBar::AddRadioTool(...)
+│     │             │    ├─ wxToolBar::AddSeparator()
+│     │             │    └─ wxToolBar::Realize()
+│     │             │
+│     │             ├─ (stan narzędzi)
+│     │             │    ├─ wxToolBar::EnableTool(int id, bool enable)
+│     │             │    ├─ wxToolBar::ToggleTool(int id, bool toggle)
+│     │             │    └─ wxToolBar::GetToolState(int id) const
+│     │             │
+│     │             └─ (pomoc)
+│     │                  ├─ wxToolBar::SetToolShortHelp(int id, const wxString& help)
+│     │                  └─ wxToolBar::SetToolLongHelp(int id, const wxString& help)
+│     │
+│     └─ wxStatusBarBase
+│        └─ wxStatusBar
+│              ├─ ma → pola
+│              │    ├─ wxStatusBar::SetFieldsCount(int number)
+│              │    ├─ wxStatusBar::SetStatusWidths(int n, const int* widths)
+│              │    └─ wxStatusBar::SetStatusStyles(int n, const int* styles)
+│              │
+│              └─ (tekst)
+│                   ├─ wxStatusBar::SetStatusText(const wxString& text, int i = 0)
+│                   ├─ wxStatusBar::GetStatusText(int i = 0) const
+│                   └─ wxStatusBar::PushStatusText(const wxString& text, int i = 0)
+│                        └─ wxStatusBar::PopStatusText(int i = 0)
+│
+├─ wxMenuBarBase
+│  └─ wxMenuBar
+│        ├─ ma → wxMenu
+│        │    ├─ wxMenuBar::Append(wxMenu* menu, const wxString& title)
+│        │    ├─ wxMenuBar::Insert(size_t pos, wxMenu* menu, const wxString& title)
+│        │    ├─ wxMenuBar::Replace(size_t pos, wxMenu* menu, const wxString& title)
+│        │    └─ wxMenuBar::Remove(size_t pos)
+│        │
+│        └─ (dostęp)
+│             ├─ wxMenuBar::GetMenuCount() const
+│             └─ wxMenuBar::GetMenu(size_t pos) const
+│
+├─ wxMenuBase
+│  └─ wxMenu
+│        ├─ ma → wxMenuItem
+│        │    ├─ (tworzenie / dodawanie)
+│        │    │    ├─ wxMenu::Append(int id, const wxString& item, const wxString& help = "")
+│        │    │    ├─ wxMenu::Append(wxMenuItem* item)                 (gdy tworzysz ręcznie)
+│        │    │    ├─ wxMenu::AppendSeparator()
+│        │    │    ├─ wxMenu::AppendCheckItem(...)
+│        │    │    ├─ wxMenu::AppendRadioItem(...)
+│        │    │    ├─ wxMenu::AppendSubMenu(wxMenu* submenu, const wxString& text,
+│        │    │    │                     const wxString& help = "")
+│        │    │    ├─ wxMenu::Insert(size_t pos, int id, const wxString& item, const wxString& help = "")
+│        │    │    └─ wxMenu::Remove(int id) / wxMenu::Delete(int id)
+│        │    │
+│        │    └─ (dostęp do pozycji)
+│        │         ├─ wxMenu::FindItem(int id) const
+│        │         ├─ wxMenu::FindItemByPosition(size_t pos) const
+│        │         └─ wxMenu::GetMenuItemCount() const
+│        │
+│        └─ (opcje menu)
+│             ├─ wxMenu::Enable(int id, bool enable)
+│             ├─ wxMenu::Check(int id, bool check)        (dla check/radio)
+│             ├─ wxMenu::IsChecked(int id) const
+│             └─ wxMenu::SetLabel(int id, const wxString& label)
+│
+└─ wxMenuItemBase
+   └─ wxMenuItem
+         ├─ (stan/widoczność)
+         │    ├─ wxMenuItem::Enable(bool enable = true)
+         │    ├─ wxMenuItem::IsEnabled() const
+         │    ├─ wxMenuItem::Check(bool check = true)          (dla check/radio)
+         │    └─ wxMenuItem::IsChecked() const
+         │
+         ├─ (ID / menu nadrzędne)
+         │    ├─ wxMenuItem::GetId() const
+         │    └─ wxMenuItem::GetMenu() const
+         │
+         ├─ (etykieta)
+         │    ├─ wxMenuItem::GetItemLabel() const
+         │    ├─ wxMenuItem::GetItemLabelText() const
+         │    └─ wxMenuItem::SetItemLabel(const wxString& label)
+         │
+         ├─ (help)
+         │    ├─ wxMenuItem::SetHelp(const wxString& help)
+         │    └─ wxMenuItem::GetHelp() const
+         │
+         ├─ (typ)
+         │    └─ wxMenuItem::GetKind() const   (wxITEM_NORMAL/CHECK/RADIO/SEPARATOR)
+         │
+         ├─ (submenu)
+         │    ├─ wxMenuItem::IsSubMenu() const
+         │    └─ wxMenuItem::GetSubMenu() const
+         │
+         └─ (bitmapy)
+              ├─ wxMenuItem::SetBitmap(const wxBitmapBundle& bmp)
+              └─ wxMenuItem::GetBitmap() const
+

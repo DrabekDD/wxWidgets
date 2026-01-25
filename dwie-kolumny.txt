@@ -1,0 +1,28 @@
+┌───────────────────────────────┐            ┌─────────────────────────────────────────────┐
+│  DZIEDZICZENIE (is-a)         │            │  KOMPOZYCJA (has-a) + METODY                │
+└───────────────────────────────┘            └─────────────────────────────────────────────┘
+
+wxObject                                      (obiekty, które sobie tworzysz)
+├─ wxEvtHandler                                wxFrame
+│                                               ├─ SetMenuBar(mb)
+└─ wxWindow                                     ├─ CreateToolBar()  -> zwraca wxToolBar*
+   │                                            └─ CreateStatusBar()
+   ├─ wxTopLevelWindow
+   │  └─ wxFrame                                wxMenuBar mb
+   │                                              └─ Append(menuPlik, "Plik")
+   ├─ wxControl
+   │  └─ wxControlContainer                      wxMenu menuPlik
+   │     └─ wxToolBarBase                          ├─ Append(wxID_OPEN, "Otwórz\tCtrl-O")
+   │        └─ wxToolBar                           ├─ AppendSeparator()
+   │                                               └─ Append(wxID_EXIT, "Wyjście\tAlt-F4")
+   └─ wxStatusBarBase
+      └─ wxStatusBar                             wxToolBar* tb (z CreateToolBar)
+                                                   ├─ AddTool(ID_SAVE, "Zapisz", bmp, "Zapisz")
+                                                   ├─ AddSeparator()
+                                                   └─ Realize()
+
+                                                 wxStatusBar* sb (z CreateStatusBar lub new)
+                                                   ├─ SetFieldsCount(2)
+                                                   ├─ SetStatusWidths(2, widths[])
+                                                   └─ SetStatusText("Gotowe", 0)
+

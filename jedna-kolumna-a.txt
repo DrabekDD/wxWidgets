@@ -1,0 +1,52 @@
+wxObject
+├─ wxEvtHandler
+│  └─ wxWindow
+│     ├─ wxTopLevelWindow
+│     │  └─ wxFrame
+│     │     ├─ ma → wxMenuBar
+│     │     │     └─ wxFrame::SetMenuBar(wxMenuBar*)
+│     │     │
+│     │     ├─ ma → wxToolBar
+│     │     │     ├─ wxFrame::CreateToolBar(long style = ..., wxWindowID id = ...)
+│     │     │     ├─ wxFrame::GetToolBar()
+│     │     │     └─ (rzadko) wxFrame::SetToolBar(wxToolBar*)
+│     │     │
+│     │     └─ ma → wxStatusBar
+│     │           ├─ wxFrame::CreateStatusBar(int number = 1, long style = ..., wxWindowID id = ...)
+│     │           ├─ (ręcznie) new wxStatusBar(wxWindow* parent)
+│     │           └─ wxFrame::SetStatusBar(wxStatusBar*)
+│     │
+│     ├─ wxControl
+│     │  └─ wxControlContainer
+│     │     └─ wxToolBarBase
+│     │        └─ wxToolBar
+│     │              ├─ wxToolBar::AddTool(int id, const wxString& label,
+│     │              │                  const wxBitmapBundle& bmp,
+│     │              │                  const wxString& shortHelp = "",
+│     │              │                  wxItemKind kind = wxITEM_NORMAL)
+│     │              ├─ wxToolBar::AddSeparator()
+│     │              └─ wxToolBar::Realize()
+│     │
+│     └─ wxStatusBarBase
+│           └─ wxStatusBar
+│                 ├─ wxStatusBar::SetFieldsCount(int number)
+│                 ├─ wxStatusBar::SetStatusWidths(int n, const int* widths)
+│                 ├─ wxStatusBar::SetStatusText(const wxString& text, int i = 0)
+│                 └─ (opc.) wxStatusBar::SetStatusStyles(int n, const int* styles)
+│
+├─ wxMenuBarBase
+│  └─ wxMenuBar
+│        ├─ wxMenuBar::Append(wxMenu* menu, const wxString& title)
+│        └─ ma → wxMenu
+│
+├─ wxMenuBase
+│  └─ wxMenu
+│        ├─ wxMenu::Append(int id, const wxString& item, const wxString& help = "")
+│        ├─ wxMenu::AppendSeparator()
+│        ├─ wxMenu::AppendCheckItem(...)
+│        ├─ wxMenu::AppendRadioItem(...)
+│        └─ ma → wxMenuItem
+│
+└─ wxMenuItemBase
+      └─ wxMenuItem
+

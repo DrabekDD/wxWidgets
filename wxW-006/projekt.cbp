@@ -45,6 +45,10 @@
 		<Unit filename="wxW_Main.cpp" />
 		<Unit filename="wxW_Main.h" />
 		<Unit filename="wx_pch.h" />
-		<Extensions />
+		<Extensions>
+			<wxsmith version="1">
+				<gui name="wxWidgets" src="" main="" init_handlers="necessary" language="CPP" />
+			</wxsmith>
+		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

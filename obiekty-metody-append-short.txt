@@ -1,0 +1,48 @@
+wxObject
+└─ wxEvtHandler
+   └─ wxWindow
+      ├─ wxTopLevelWindow
+      │  └─ wxFrame
+      │     ├─ ma → wxMenuBar
+      │     │    └─ wxFrame::SetMenuBar(wxMenuBar*)
+      │     │
+      │     ├─ ma → wxToolBar
+      │     │    └─ wxFrame::CreateToolBar()
+      │     │
+      │     └─ ma → wxStatusBar
+      │          └─ wxFrame::CreateStatusBar()
+      │
+      ├─ wxControl
+      │  └─ wxControlContainer
+      │     └─ wxToolBarBase
+      │        └─ wxToolBar
+      │           ├─ wxToolBar::AddTool(id, label, bmp)
+      │           ├─ wxToolBar::AddSeparator()
+      │           └─ wxToolBar::Realize()
+      │
+      └─ wxStatusBarBase
+         └─ wxStatusBar
+            ├─ wxStatusBar::SetFieldsCount(n)
+            ├─ wxStatusBar::SetStatusWidths(n, widths[])
+            └─ wxStatusBar::SetStatusText(text, field=0)
+
+
+wxObject
+├─ wxMenuBarBase
+│  └─ wxMenuBar
+│     └─ ma → wxMenu
+│          └─ wxMenuBar::Append(wxMenu* menu, const wxString& title)
+│
+├─ wxMenuBase
+│  └─ wxMenu
+│     └─ ma → wxMenuItem
+│          ├─ wxMenu::Append(int id, const wxString& item, const wxString& help = "")
+│          ├─ wxMenu::AppendSeparator()
+│          ├─ wxMenu::AppendCheckItem(...)
+│          └─ wxMenu::AppendRadioItem(...)
+│
+└─ wxMenuItemBase
+   └─ wxMenuItem
+      ├─ wxMenuItem::Enable(bool)
+      └─ wxMenuItem::Check(bool)     (dla check/radio)
+
