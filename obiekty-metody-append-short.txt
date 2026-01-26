@@ -46,3 +46,5 @@ wxObject
       ├─ wxMenuItem::Enable(bool)
       └─ wxMenuItem::Check(bool)     (dla check/radio)
 
+a
+
