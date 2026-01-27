@@ -17,7 +17,11 @@ zmiana wywołania w OnInit()
 */
 bool MyApp::OnInit()
 {
-    MyFrame* frame = new MyFrame(NULL, wxID_ANY, appName, wxPoint(100, 100), wxSize(1000, 600),
+    MyFrame* frame = new MyFrame(NULL,
+                                 wxID_ANY,
+                                 appName,
+                                 wxPoint(100, 100),
+                                 wxSize(1000, 600),
                                  wxCAPTION | wxMINIMIZE_BOX | wxCLOSE_BOX);
     frame->Show(true);
     return true;
