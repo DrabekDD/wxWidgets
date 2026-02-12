@@ -1,10 +1,12 @@
 #pragma once
 #include <wx/wx.h>
 
+class MyFrame;
+
 class MyApp : public wxApp
 {
 private:
-    wxFrame* frame = nullptr;
+    MyFrame* frame = nullptr;
 public:
     bool OnInit() override;
 };
