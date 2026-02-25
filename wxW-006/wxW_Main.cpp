@@ -7,24 +7,24 @@ MyFrame::MyFrame(wxWindow* parent, wxWindowID id, const wxString& title,
     : wxFrame(parent, id, title, pos, size, style)
 {
     {//CreateMyToolbar();
-    tb = new wxToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
-                              wxTB_HORIZONTAL | wxNO_BORDER | wxTB_FLAT, "MainToolbar");
+ /*   tb = new wxToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+                              wxTB_VERTICAL | wxNO_BORDER, "MainToolbar");
     tb->SetToolBitmapSize(wxSize(125,125));
     tb->AddTool(wxID_ANY, "Nowy",  wxArtProvider::GetBitmap(wxART_NEW,  wxART_TOOLBAR, wxSize(16,16)), "Nowy");
+    tb->AddTool(wxID_ANY, "Otwórz", wxArtProvider::GetBitmap(wxART_FILE_OPEN, wxART_TOOLBAR), "Otwórz");
+    tb->AddTool(wxID_ANY, "Zapisz", wxArtProvider::GetBitmap(wxART_FILE_SAVE, wxART_TOOLBAR), "NAPISZ");
+    tb->AddSeparator();
+    tb->AddTool(wxID_ANY, "Pomoc", wxArtProvider::GetBitmap(wxART_HELP, wxART_TOOLBAR), "Pomoc");
+    tb->Realize();
+    this->SetToolBar(tb); // ramka przejmuje własność — NIE usuwaj tb ręcznie !!!!
+*/
+    tb = CreateToolBar(wxTB_HORIZONTAL | wxNO_BORDER | wxTB_FLAT);
+    tb->AddTool(wxID_ANY, "Nowy", wxArtProvider::GetBitmap(wxART_NEW, wxART_TOOLBAR), "Nowy");
     tb->AddTool(wxID_ANY, "Otwórz", wxArtProvider::GetBitmap(wxART_FILE_OPEN, wxART_TOOLBAR), "Otwórz");
     tb->AddTool(wxID_ANY, "Zapisz", wxArtProvider::GetBitmap(wxART_FILE_SAVE, wxART_TOOLBAR), "Zapisz");
     tb->AddSeparator();
     tb->AddTool(wxID_ANY, "Pomoc", wxArtProvider::GetBitmap(wxART_HELP, wxART_TOOLBAR), "Pomoc");
     tb->Realize();
-    this->SetToolBar(tb); // ramka przejmuje własność — NIE usuwaj tb ręcznie !!!!
-
-    //tb = CreateToolBar(wxTB_HORIZONTAL | wxNO_BORDER | wxTB_FLAT);
-    //tb->AddTool(, "Nowy", wxArtProvider::GetBitmap(wxART_NEW, wxART_TOOLBAR), "Nowy");
-    //tb->AddTool(wxID_ANY, "Otwórz", wxArtProvider::GetBitmap(wxART_FILE_OPEN, wxART_TOOLBAR), "Otwórz");
-    //tb->AddTool(wxID_ANY, "Zapisz", wxArtProvider::GetBitmap(wxART_FILE_SAVE, wxART_TOOLBAR), "Zapisz");
-    //tb->AddSeparator();
-    //tb->AddTool(wxID_ANY, "Pomoc", wxArtProvider::GetBitmap(wxART_HELP, wxART_TOOLBAR), "Pomoc");
-    //tb->Realize();
     }
 
     {mb = new wxMenuBar(); // tworzymy poszczególne elementy menu
@@ -62,7 +62,7 @@ MyFrame::MyFrame(wxWindow* parent, wxWindowID id, const wxString& title,
     CenterOnScreen();
     }
 }
-
+/*
 #include "wxW_Main.h"
 #include <wx/artprov.h> // wxArtProvider dla standardowych ikon
 
@@ -88,5 +88,5 @@ void MyFrame::CreateMyToolbar()
     // finalize toolbar (upewnij się, że jest widoczny)
     tb->Realize();
 }
-
+*/
 

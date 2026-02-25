@@ -1,21 +1,21 @@
 /***************************************************************
- * Name:      wxSApp.h
+ * Name:      wxS001App.h
  * Purpose:   Defines Application Class
  * Author:    DD (kyczbard@gmail.com)
- * Created:   2026-02-13
+ * Created:   2026-02-25
  * Copyright: DD ()
  * License:
  **************************************************************/
 
-#ifndef WXSAPP_H
-#define WXSAPP_H
+#ifndef WXS001APP_H
+#define WXS001APP_H
 
 #include <wx/app.h>
 
-class wxSApp : public wxApp
+class wxS001App : public wxApp
 {
     public:
         virtual bool OnInit();
 };
 
-#endif // WXSAPP_H
+#endif // WXS001APP_H

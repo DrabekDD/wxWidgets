@@ -40,20 +40,20 @@
 		<Linker>
 			<Add option="`wx-config --libs`" />
 		</Linker>
-		<Unit filename="wxSApp.cpp" />
-		<Unit filename="wxSApp.h" />
-		<Unit filename="wxSMain.cpp" />
-		<Unit filename="wxSMain.h" />
+		<Unit filename="wxS-App.cpp" />
+		<Unit filename="wxS-App.h" />
+		<Unit filename="wxS-Main.cpp" />
+		<Unit filename="wxS-Main.h" />
 		<Unit filename="wx_pch.h">
 			<Option compile="1" />
 			<Option weight="0" />
 		</Unit>
-		<Unit filename="wxsmith/wxSframe.wxs" />
+		<Unit filename="wxsmith/wxS-Frame.wxs" />
 		<Extensions>
 			<wxsmith version="1">
-				<gui name="wxWidgets" src="wxSApp.cpp" main="wxSFrame" init_handlers="necessary" language="CPP" />
+				<gui name="wxWidgets" src="wxS001App.cpp" main="wxS001Frame" init_handlers="necessary" language="CPP" />
 				<resources>
-					<wxFrame wxs="wxsmith/wxSframe.wxs" src="wxSMain.cpp" hdr="wxSMain.h" fwddecl="0" i18n="1" name="wxSFrame" language="CPP" />
+					<wxFrame wxs="wxsmith/wxS001frame.wxs" src="wxS001Main.cpp" hdr="wxS001Main.h" fwddecl="0" i18n="1" name="wxS001Frame" language="CPP" />
 				</resources>
 			</wxsmith>
 		</Extensions>

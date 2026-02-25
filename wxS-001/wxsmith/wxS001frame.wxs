@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<wxsmith>
+	<object class="wxFrame" name="wxS001Frame">
+		<title>OKNO - projekt</title>
+		<size>800,300</size>
+		<focused>1</focused>
+		<fg>wxSYS_COLOUR_HOTLIGHT</fg>
+		<font>
+			<size>11</size>
+			<style>normal</style>
+			<weight>normal</weight>
+			<underlined>0</underlined>
+			<family>swiss</family>
+			<face>Sans</face>
+		</font>
+		<style>wxCAPTION|wxRESIZE_BORDER|wxMAXIMIZE_BOX|wxMINIMIZE_BOX|wxVSCROLL|wxHSCROLL</style>
+		<object class="wxMenuBar" variable="mb" member="no">
+			<object class="wxMenu" variable="Menu1" member="no">
+				<label>&amp;File</label>
+				<object class="wxMenuItem" name="idMenuQuit" variable="MenuItem1" member="no">
+					<label>Quit</label>
+					<accel>Alt-F4</accel>
+					<help>Quit the application</help>
+					<handler function="OnQuit" entry="EVT_MENU" />
+					<checkable>1</checkable>
+				</object>
+			</object>
+			<object class="wxMenu" variable="Menu2" member="no">
+				<label>Help</label>
+				<object class="wxMenuItem" name="idMenuAbout" variable="MenuItem2" member="no">
+					<label>About</label>
+					<accel>F1</accel>
+					<help>Show info about this application</help>
+					<handler function="OnAbout" entry="EVT_MENU" />
+					<radio>1</radio>
+				</object>
+			</object>
+		</object>
+		<object class="wxStatusBar" name="ID_SB" variable="sb" member="yes">
+			<fields>3</fields>
+			<widths>-3,-2,-1</widths>
+			<styles>wxSB_RAISED,wxSB_RAISED,wxSB_RAISED</styles>
+			<extra_code>///////////////////////////////////////// TO TU WPISUJEMY MY&#x0A;    int myWidths[3] = {-3, -2, -1 };&#x0A;    StatusBar-&gt;SetFieldsCount(3, myWidths);&#x0A;    SetStatusText(GetTitle(), 0);&#x0A;    wxSize s = GetSize();&#x0A;    SetStatusText(wxString::Format(&quot;Size: %dx%d&quot;, s.GetWidth(), s.GetHeight()), 1);&#x0A;    SetStatusText(&quot;DeDe&quot;, 2);&#x0A;///////////////////////////////////////// TO TU WPISUJEMY MY</extra_code>
+			<style>wxBORDER_DOUBLE</style>
+		</object>
+		<object class="wxToolBar" name="wxID_TB" variable="tb" member="no">
+			<style>wxTB_VERTICAL|wxTB_HORIZONTAL|wxTB_RIGHT</style>
+			<object class="tool" name="ID_TBSTART" variable="tbStart" member="yes">
+				<label>Start</label>
+				<bitmap stock_id="wxART_QUIT" stock_client="wxART_TOOLBAR" />
+				<handler function="OntbStartClicked" entry="EVT_TOOL" />
+			</object>
+		</object>
+	</object>
+</wxsmith>

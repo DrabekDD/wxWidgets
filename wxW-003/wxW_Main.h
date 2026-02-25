@@ -9,5 +9,5 @@ public:
             const wxPoint& pos, const wxSize& size, long style);
 private:
     // konieczne jedynie gdy mamy manualny wskaźnik
-    // wxStatusBar* sb = nullptr;
+       wxStatusBar* sb = nullptr;
 };

@@ -1,21 +1,21 @@
 /***************************************************************
- * Name:      projektApp.h
+ * Name:      wxS001App.h
  * Purpose:   Defines Application Class
  * Author:    DD (kyczbard@gmail.com)
- * Created:   2026-02-09
+ * Created:   2026-02-25
  * Copyright: DD ()
  * License:
  **************************************************************/
 
-#ifndef PROJEKTAPP_H
-#define PROJEKTAPP_H
+#ifndef WXS001APP_H
+#define WXS001APP_H
 
 #include <wx/app.h>
 
-class projektApp : public wxApp
+class wxS001App : public wxApp
 {
     public:
         virtual bool OnInit();
 };
 
-#endif // PROJEKTAPP_H
+#endif // WXS001APP_H

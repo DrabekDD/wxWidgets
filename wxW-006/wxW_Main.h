@@ -15,6 +15,6 @@ private:
     wxMenu* mFile = nullptr;
     wxMenu* mHelp = nullptr;
 
-    void CreateMyToolbar();
+    //void CreateMyToolbar();
     wxToolBar* tb = nullptr;
 };
