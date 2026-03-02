@@ -4,6 +4,7 @@
 const wxString appName = "wxWidgets";
 
 wxIMPLEMENT_APP(MyApp);
+
 bool MyApp::OnInit()
 {
     frame = new MyFrame(NULL, wxID_ANY, appName, wxPoint(200, 150),

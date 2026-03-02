@@ -2,12 +2,12 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="projekt" />
+		<Option title="wxS" />
 		<Option pch_mode="0" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="bin/Debug/projekt" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Debug/wxS" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
 				<Option type="0" />
 				<Option compiler="gcc" />
@@ -17,7 +17,7 @@
 				</Compiler>
 			</Target>
 			<Target title="Release">
-				<Option output="bin/Release/projekt" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Release/wxS" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
 				<Option type="0" />
 				<Option compiler="gcc" />
@@ -40,14 +40,24 @@
 		<Linker>
 			<Add option="`wx-config --libs`" />
 		</Linker>
-		<Unit filename="projektApp.cpp" />
-		<Unit filename="projektApp.h" />
-		<Unit filename="projektMain.cpp" />
-		<Unit filename="projektMain.h" />
+		<Unit filename="wxSApp.cpp" />
+		<Unit filename="wxSApp.h" />
+		<Unit filename="wxSMain.cpp" />
+		<Unit filename="wxSMain.h" />
 		<Unit filename="wx_pch.h">
 			<Option compile="1" />
 			<Option weight="0" />
 		</Unit>
-		<Extensions />
+		<Unit filename="wxsmith/Panel1.wxs" />
+		<Unit filename="wxsmith/wxSframe.wxs" />
+		<Extensions>
+			<wxsmith version="1">
+				<gui name="wxWidgets" src="wxSApp.cpp" main="wxSFrame" init_handlers="necessary" language="CPP" />
+				<resources>
+					<wxFrame wxs="wxsmith/wxSframe.wxs" src="wxSMain.cpp" hdr="wxSMain.h" fwddecl="0" i18n="1" name="wxSFrame" language="CPP" />
+					<wxPanel wxs="wxsmith/Panel1.wxs" src="Panel1.cpp" hdr="Panel1.h" fwddecl="0" i18n="1" name="Panel1" language="CPP" />
+				</resources>
+			</wxsmith>
+		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

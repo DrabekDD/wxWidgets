@@ -2,9 +2,10 @@
 #include <wx/artprov.h>
 
 MyFrame::MyFrame(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style)
-        : wxFrame(parent, id, title, pos, size, style)
+        :wxFrame(parent, id, title, pos, size, style)
 {
-    {mb = new wxMenuBar();
+    // tworzenie menu
+    mb = new wxMenuBar();
     mFile = new wxMenu();
     mHelp = new wxMenu();
     mFile->AppendCheckItem(wxID_ANY, wxT("Pokaż &datę\tCtrl-D"), wxT("Data"));
@@ -15,9 +16,10 @@ MyFrame::MyFrame(wxWindow* parent, wxWindowID id, const wxString& title, const w
     mb->Append(mFile, wxT("&Plik"));
     mb->Append(mHelp, wxT("P&omoc"));
     this->SetMenuBar(mb);
-    }
-    {tb = new wxToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize,wxTB_HORIZONTAL, "MainToolbar");
-    tb->SetToolBitmapSize(wxSize(48,48));
+
+    // tworzenie paska narzędziowego
+    tb = new wxToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize,wxTB_VERTICAL|wxTB_RIGHT, "MainToolbar");
+    tb->SetToolBitmapSize(wxSize(24,24));
     tb->AddTool(wxID_ANY, "Nowy",  wxArtProvider::GetBitmap(wxART_NEW,  wxART_TOOLBAR, wxSize(16,16)), "Nowy");
     tb->AddTool(wxID_ANY, "Otwórz", wxArtProvider::GetBitmap(wxART_FILE_OPEN, wxART_TOOLBAR), "Otwórz");
     tb->AddTool(wxID_ANY, "Zapisz", wxArtProvider::GetBitmap(wxART_FILE_SAVE, wxART_TOOLBAR), "Zapisz");
@@ -25,14 +27,13 @@ MyFrame::MyFrame(wxWindow* parent, wxWindowID id, const wxString& title, const w
     tb->AddTool(wxID_ANY, "Pomoc", wxArtProvider::GetBitmap(wxART_HELP, wxART_TOOLBAR), "Pomoc");
     tb->Realize();
     this->SetToolBar(tb);
-    }
-    {sb = new wxStatusBar(this);
+
+    // tworzenie paska stanu
+    sb = new wxStatusBar(this);
     int widths[4] = { 300, -1, -2, 240 };
     sb->SetFieldsCount(4, widths);
     int st[4] = { wxSB_NORMAL, wxSB_SUNKEN, wxSB_SUNKEN, wxSB_SUNKEN };
     sb->SetStatusStyles(4, st);
-    sb->SetBackgroundColour(*wxLIGHT_GREY);
-    sb->SetForegroundColour(*wxWHITE);
     this->SetStatusBar(sb);
     SetStatusText(GetTitle(), 0);
     wxPoint p = GetPosition();
@@ -40,7 +41,8 @@ MyFrame::MyFrame(wxWindow* parent, wxWindowID id, const wxString& title, const w
     wxSize s = GetSize();
     SetStatusText(wxString::Format("Size: %dx%d", s.GetWidth(), s.GetHeight()), 2);
     SetStatusText(wxString::Format("style=%ld", style), 3);
-    }
+
+
     CenterOnScreen();
 }
 
