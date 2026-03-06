@@ -10,6 +10,7 @@
 #include "wx_pch.h"
 #include "wxSMain.h"
 #include <wx/msgdlg.h>
+#include "global_kbd_event.h"
 
 //(*InternalHeaders(wxSFrame)
 #include <wx/intl.h>
@@ -43,6 +44,7 @@ wxString wxbuildinfo(wxbuildinfoformat format)
 }
 
 //(*IdInit(wxSFrame)
+const long wxSFrame::ID_PANEL1 = wxNewId();
 const long wxSFrame::ID_SHOW_DATE = wxNewId();
 const long wxSFrame::ID_SHOW_SYS_VERSION = wxNewId();
 const long wxSFrame::ID_STATUSBAR1 = wxNewId();
@@ -51,6 +53,7 @@ const long wxSFrame::ID_STATUSBAR1 = wxNewId();
 BEGIN_EVENT_TABLE(wxSFrame,wxFrame)
     //(*EventTable(wxSFrame)
     //*)
+    //EVT_CHAR_HOOK(wxSFrame::OnKeyPress)
 END_EVENT_TABLE()
 
 wxSFrame::wxSFrame(wxWindow* parent,wxWindowID id)
@@ -59,7 +62,10 @@ wxSFrame::wxSFrame(wxWindow* parent,wxWindowID id)
     wxMenu* mInfo;
     wxMenuBar* MenuBar1;
 
-    Create(parent, id, _("Uzycie zdarzen"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("id"));
+    Create(parent, wxID_ANY, _("Uzycie zdarzen"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("wxID_ANY"));
+    SetClientSize(wxSize(810,450));
+    panel1 = new wxPanel(this, ID_PANEL1, wxPoint(600,208), wxDefaultSize, wxTAB_TRAVERSAL, _T("ID_PANEL1"));
+    panel1->SetFocus();
     MenuBar1 = new wxMenuBar();
     mInfo = new wxMenu();
     MenuItem3 = new wxMenuItem(mInfo, ID_SHOW_DATE, _("Pokaz date"), wxEmptyString, wxITEM_CHECK);
@@ -75,16 +81,21 @@ wxSFrame::wxSFrame(wxWindow* parent,wxWindowID id)
     StatusBar1->SetStatusStyles(3,__wxStatusBarStyles_1);
     SetStatusBar(StatusBar1);
 
+    panel1->Connect(wxEVT_KEY_DOWN,(wxObjectEventFunction)&wxSFrame::OnKeyPress,0,this);
+    panel1->Connect(wxEVT_LEFT_UP,(wxObjectEventFunction)&wxSFrame::OnMouseClick,0,this);
+    panel1->Connect(wxEVT_RIGHT_UP,(wxObjectEventFunction)&wxSFrame::OnMouseClick,0,this);
+    panel1->Connect(wxEVT_MOTION,(wxObjectEventFunction)&wxSFrame::OnMouseMove,0,this);
     Connect(ID_SHOW_DATE,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&wxSFrame::OnShowDate);
     Connect(ID_SHOW_SYS_VERSION,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&wxSFrame::OnShowSysVersion);
     Connect(wxID_ANY,wxEVT_CLOSE_WINDOW,(wxObjectEventFunction)&wxSFrame::OnClose);
-    Connect(wxEVT_LEFT_DOWN,(wxObjectEventFunction)&wxSFrame::OnMouseClick);
-    Connect(wxEVT_LEFT_UP,(wxObjectEventFunction)&wxSFrame::OnMouseClick);
-    Connect(wxEVT_LEFT_DCLICK,(wxObjectEventFunction)&wxSFrame::OnMouseClick);
-    Connect(wxEVT_RIGHT_DOWN,(wxObjectEventFunction)&wxSFrame::OnMouseClick);
-    Connect(wxEVT_RIGHT_UP,(wxObjectEventFunction)&wxSFrame::OnMouseClick);
-    Connect(wxEVT_MOTION,(wxObjectEventFunction)&wxSFrame::OnMouseMove);
+    Connect(wxEVT_SIZE,(wxObjectEventFunction)&wxSFrame::OnResize);
     //*)
+    //Connect(wxID_ANY, wxEVT_KEY_DOWN, (wxObjectEventFunction)&wxSFrame::OnKeyPress);
+    //Bind(wxEVT_CHAR_HOOK, &wxSFrame::OnKeyPress, this);
+    //Bind(wxEVT_KEY_DOWN, &wxSFrame::OnKeyPress, this);
+    GlobalKeyEvtHandler::Register(this);
+    Bind(wxEVT_KEY_DOWN, &wxSFrame::OnKeyPress, this);
+    SetStatusText("Licznik: 0", 0);
 
     //poprawki nazw polskich
     SetTitle(wxString::FromUTF8("Użycie zdarzeń"));
@@ -95,16 +106,20 @@ wxSFrame::wxSFrame(wxWindow* parent,wxWindowID id)
     //parametry paska stanu
     int myWidths[3] = {-3, -2, -2 };
     StatusBar1->SetFieldsCount(3, myWidths);
-    SetStatusText(GetTitle(), 0);
+    //SetStatusText(GetTitle(), 0);
     wxSize s = GetSize();
     SetStatusText(wxString::Format("Size: %dx%d", s.GetWidth(), s.GetHeight()), 2);
 
+    panel1->SetFocus();
+    Raise();
 }
 
 wxSFrame::~wxSFrame()
 {
     //(*Destroy(wxSFrame)
     //*)
+    Unbind(wxEVT_KEY_DOWN, &wxSFrame::OnKeyPress, this);
+    GlobalKeyEvtHandler::Unregister(this);
 }
 
 void wxSFrame::OnQuit(wxCommandEvent& event)
@@ -155,14 +170,12 @@ void wxSFrame::OnMouseClick(wxMouseEvent& event)
 {
     wxString key;
 
-    if (event.LeftDClick())
-        key = "Lewy - dwuklik";
-    else if (event.LeftUp())
+    if (event.LeftUp())
         key = "Lewy - klikk";
     else if (event.RightUp())
         key = "Prawy - klik";
     else
-        return;
+    return;
 
     wxMessageBox(
         wxString::Format("Przycisk: %s\nPozycja: %d, %d", key, event.GetX(), event.GetY()), "Informacja");
@@ -172,4 +185,33 @@ void wxSFrame::OnClose(wxCloseEvent& event)
 {
      event.Skip();
 }
+
+void wxSFrame::OnKeyPress(wxKeyEvent& event)
+{
+    int key = event.GetKeyCode();
+
+    if (key == WXK_LEFT)       licznik--;
+    else if (key == WXK_RIGHT) licznik++;
+    else if (key == 'R' || key == 'r') licznik = 0;
+    else if (key == WXK_ESCAPE) { Close(); return; }
+    else { event.Skip(); return; }
+
+    SetStatusText(wxString::Format("Licznik: %d", licznik), 0);
+}
+
+
+
+void wxSFrame::OnResize(wxSizeEvent& event)
+{
+    wxSize s = event.GetSize();
+    SetStatusText(wxString::Format("Rozmiar: %d, %d", s.GetWidth(), s.GetHeight()), 2);
+    event.Skip();
+}
+
+
+
+
+
+
+
 

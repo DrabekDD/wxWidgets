@@ -2,14 +2,18 @@
 <wxsmith>
 	<object class="wxFrame" name="wxSFrame">
 		<title>Uzycie zdarzen</title>
+		<size>810,450</size>
+		<id_arg>0</id_arg>
 		<handler function="OnClose" entry="EVT_CLOSE" />
-		<handler function="OnMouseClick" entry="EVT_LEFT_DOWN" />
-		<handler function="OnMouseClick" entry="EVT_LEFT_UP" />
-		<handler function="OnMouseClick" entry="EVT_LEFT_DCLICK" />
-		<handler function="OnMouseClick" entry="EVT_RIGHT_DOWN" />
-		<handler function="OnMouseClick" entry="EVT_RIGHT_UP" />
-		<handler function="OnMouseClick" entry="EVT_RIGHT_DCLICK" />
-		<handler function="OnMouseMove" entry="EVT_MOTION" />
+		<handler function="OnResize" entry="EVT_SIZE" />
+		<object class="wxPanel" name="ID_PANEL1" variable="panel1" member="yes">
+			<pos>600,208</pos>
+			<focused>1</focused>
+			<handler function="OnKeyPress" entry="EVT_KEY_DOWN" />
+			<handler function="OnMouseClick" entry="EVT_LEFT_UP" />
+			<handler function="OnMouseClick" entry="EVT_RIGHT_UP" />
+			<handler function="OnMouseMove" entry="EVT_MOTION" />
+		</object>
 		<object class="wxMenuBar" variable="MenuBar1" member="no">
 			<object class="wxMenu" variable="mInfo" member="no">
 				<label>&amp;Informacje</label>

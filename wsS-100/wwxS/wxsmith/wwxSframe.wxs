@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<wxsmith>
+	<object class="wxFrame" name="wwxSFrame">
+		<size>685,450</size>
+		<handler function="OnUseMouse" entry="EVT_LEFT_DOWN" />
+		<handler function="OnUseMouse" entry="EVT_LEFT_UP" />
+		<handler function="OnUseMouse" entry="EVT_LEFT_DCLICK" />
+		<handler function="OnUseMouse" entry="EVT_MIDDLE_DOWN" />
+		<handler function="OnUseMouse" entry="EVT_MIDDLE_UP" />
+		<handler function="OnUseMouse" entry="EVT_MIDDLE_DCLICK" />
+		<handler function="OnUseMouse" entry="EVT_RIGHT_DOWN" />
+		<handler function="OnUseMouse" entry="EVT_RIGHT_UP" />
+		<handler function="OnUseMouse" entry="EVT_RIGHT_DCLICK" />
+		<object class="wxMenuBar" variable="mb" member="no">
+			<object class="wxMenu" variable="mInfo" member="no">
+				<label>&amp;Informacje</label>
+				<object class="wxMenuItem" name="ID_SHOW_DATE" variable="miData" member="yes">
+					<label>Pokaz date</label>
+					<handler function="OnShowDate" entry="EVT_MENU" />
+					<checkable>1</checkable>
+				</object>
+				<object class="wxMenuItem" name="ID_SHOW_VERSION" variable="miWersja" member="yes">
+					<label>Pokaz wersje systemu</label>
+					<handler function="OnShowVersion" entry="EVT_MENU" />
+				</object>
+			</object>
+		</object>
+		<object class="wxStatusBar" name="ID_STATUSBAR1" variable="StatusBar1" member="yes">
+			<fields>3</fields>
+			<widths>-1,-10,-10</widths>
+			<styles>wxSB_RAISED,wxSB_RAISED,wxSB_NORMAL</styles>
+		</object>
+	</object>
+</wxsmith>
