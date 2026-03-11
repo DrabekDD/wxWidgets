@@ -48,6 +48,7 @@ const long wxSFrame::ID_PANEL1 = wxNewId();
 const long wxSFrame::ID_SHOW_DATE = wxNewId();
 const long wxSFrame::ID_SHOW_SYS_VERSION = wxNewId();
 const long wxSFrame::ID_STATUSBAR1 = wxNewId();
+const long wxSFrame::ID_TIMER1 = wxNewId();
 //*)
 
 BEGIN_EVENT_TABLE(wxSFrame,wxFrame)
@@ -56,7 +57,29 @@ BEGIN_EVENT_TABLE(wxSFrame,wxFrame)
     //EVT_CHAR_HOOK(wxSFrame::OnKeyPress)
 END_EVENT_TABLE()
 
+/* >>>>>>pojedynczy klik
+LeftUp
+zapis pozycji
+start timera 250 ms
+brak drugiego kliknięcia
+timer kończy odliczanie
+OnSingleClickTimer() pokazuje Lewy - klik
+>>>>>>>>>>>dwuklik
+LeftUp
+zapis pozycji
+start timera 250 ms
+pojawia się LeftDClick
+timer zostaje zatrzymany
+OnLeftDClick() pokazuje Lewy - dwuklik
+>>>>>>>>>>>>    Timer1.SetOwner(this, ID_TIMER1);
+wysyła zdarzenie wxEVT_TIMER
+do okna wxSFrame z identyfikatorem ID_TIMER1
+*/
+
+
 wxSFrame::wxSFrame(wxWindow* parent,wxWindowID id)
+ //        :T imer1(this, ID_TIMER1)
+ // to jest w sumie zbędne bo wxSmith wpisuje Timer1.SetOwner(this, ID_TIMER1);
 {
     //(*Initialize(wxSFrame)
     wxMenu* mInfo;
@@ -80,28 +103,34 @@ wxSFrame::wxSFrame(wxWindow* parent,wxWindowID id)
     StatusBar1->SetFieldsCount(3,__wxStatusBarWidths_1);
     StatusBar1->SetStatusStyles(3,__wxStatusBarStyles_1);
     SetStatusBar(StatusBar1);
+    Timer1.SetOwner(this, ID_TIMER1);
 
     panel1->Connect(wxEVT_KEY_DOWN,(wxObjectEventFunction)&wxSFrame::OnKeyPress,0,this);
     panel1->Connect(wxEVT_LEFT_UP,(wxObjectEventFunction)&wxSFrame::OnMouseClick,0,this);
+    panel1->Connect(wxEVT_LEFT_DCLICK,(wxObjectEventFunction)&wxSFrame::OnLeftDClick,0,this);
     panel1->Connect(wxEVT_RIGHT_UP,(wxObjectEventFunction)&wxSFrame::OnMouseClick,0,this);
     panel1->Connect(wxEVT_MOTION,(wxObjectEventFunction)&wxSFrame::OnMouseMove,0,this);
     Connect(ID_SHOW_DATE,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&wxSFrame::OnShowDate);
     Connect(ID_SHOW_SYS_VERSION,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&wxSFrame::OnShowSysVersion);
+    Connect(ID_TIMER1,wxEVT_TIMER,(wxObjectEventFunction)&wxSFrame::OnSingleClickTimer);
     Connect(wxID_ANY,wxEVT_CLOSE_WINDOW,(wxObjectEventFunction)&wxSFrame::OnClose);
     Connect(wxEVT_SIZE,(wxObjectEventFunction)&wxSFrame::OnResize);
     //*)
     //Connect(wxID_ANY, wxEVT_KEY_DOWN, (wxObjectEventFunction)&wxSFrame::OnKeyPress);
     //Bind(wxEVT_CHAR_HOOK, &wxSFrame::OnKeyPress, this);
     //Bind(wxEVT_KEY_DOWN, &wxSFrame::OnKeyPress, this);
-    GlobalKeyEvtHandler::Register(this);
-    Bind(wxEVT_KEY_DOWN, &wxSFrame::OnKeyPress, this);
+    //GlobalKeyEvtHandler::Register(this);
+    //Bind(wxEVT_KEY_DOWN, &wxSFrame::OnKeyPress, this);
+    //Bind(wxEVT_TIMER, &wxSFrame::OnSingleClickTimer, this);
+    //panel1->Bind(wxEVT_LEFT_UP, &wxSFrame::OnMouseClick, this);
+    //panel1->Bind(wxEVT_RIGHT_UP, &wxSFrame::OnMouseClick, this);
+    //panel1->Bind(wxEVT_LEFT_DCLICK, &wxSFrame::OnLeftDClick, this);
     SetStatusText("Licznik: 0", 0);
 
     //poprawki nazw polskich
     SetTitle(wxString::FromUTF8("Użycie zdarzeń"));
     mInfo->SetLabel(ID_SHOW_DATE, wxT("Pokaż &datę\tCtrl-D"));
     mInfo->SetLabel(ID_SHOW_SYS_VERSION, wxT("Pokaż &wersję systemu\tCtrl-W"));
-
 
     //parametry paska stanu
     int myWidths[3] = {-3, -2, -2 };
@@ -118,8 +147,8 @@ wxSFrame::~wxSFrame()
 {
     //(*Destroy(wxSFrame)
     //*)
-    Unbind(wxEVT_KEY_DOWN, &wxSFrame::OnKeyPress, this);
-    GlobalKeyEvtHandler::Unregister(this);
+    //Unbind(wxEVT_KEY_DOWN, &wxSFrame::OnKeyPress, this);
+    //GlobalKeyEvtHandler::Unregister(this);
 }
 
 void wxSFrame::OnQuit(wxCommandEvent& event)
@@ -143,42 +172,18 @@ void wxSFrame::OnShowDate(wxCommandEvent& event)
   }
 }
 
-
-
 void wxSFrame::OnShowSysVersion(wxCommandEvent& event)
 {
   wxString system_vers = wxPlatformInfo::Get().GetOperatingSystemDescription();
   wxMessageBox(system_vers, wxT("Informacja o systemie"), wxOK|wxICON_INFORMATION);
 }
 
-/*
-void wxSFrame::OnAbout(wxCommandEvent& event)
-{
-  wxMessageBox(wxT("Copyright (c) 2015 by ..."), wxT("O programie..."), wxOK|wxICON_INFORMATION);
-  event.Skip();
-}
-*/
 
 void wxSFrame::OnMouseMove(wxMouseEvent& event)
 {
     if (!GetMenuBar()->IsChecked(ID_SHOW_DATE))
         SetStatusText(wxString::Format("Kursor: %d, %d", event.GetX(), event.GetY()), 1);
 
-}
-
-void wxSFrame::OnMouseClick(wxMouseEvent& event)
-{
-    wxString key;
-
-    if (event.LeftUp())
-        key = "Lewy - klikk";
-    else if (event.RightUp())
-        key = "Prawy - klik";
-    else
-    return;
-
-    wxMessageBox(
-        wxString::Format("Przycisk: %s\nPozycja: %d, %d", key, event.GetX(), event.GetY()), "Informacja");
 }
 
 void wxSFrame::OnClose(wxCloseEvent& event)
@@ -208,10 +213,34 @@ void wxSFrame::OnResize(wxSizeEvent& event)
     event.Skip();
 }
 
+void wxSFrame::OnMouseClick(wxMouseEvent& event)
+{
+    if (event.LeftUp())
+    {
+        m_clickPos = event.GetPosition();
+        Timer1.StartOnce(250);
+    }
+    else if (event.RightUp())
+    {
+        wxMessageBox(
+            wxString::Format("Przycisk: Prawy - klik\nPozycja: %d, %d",
+                             event.GetX(), event.GetY()),"Informacja");
+    }
+}
 
+void wxSFrame::OnLeftDClick(wxMouseEvent& event)
+{
+    if (Timer1.IsRunning())
+        Timer1.Stop();
 
+    wxMessageBox(
+        wxString::Format("Przycisk: Lewy - dwuklik\nPozycja: %d, %d",
+                         event.GetX(), event.GetY()),"Informacja");
+}
 
-
-
-
-
+void wxSFrame::OnSingleClickTimer(wxTimerEvent& event)
+{
+    wxMessageBox(
+        wxString::Format("Przycisk: Lewy - klik\nPozycja: %d, %d",
+                         m_clickPos.x, m_clickPos.y),"Informacja");
+}

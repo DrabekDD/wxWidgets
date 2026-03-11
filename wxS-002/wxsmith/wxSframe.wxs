@@ -11,6 +11,7 @@
 			<focused>1</focused>
 			<handler function="OnKeyPress" entry="EVT_KEY_DOWN" />
 			<handler function="OnMouseClick" entry="EVT_LEFT_UP" />
+			<handler function="OnLeftDClick" entry="EVT_LEFT_DCLICK" />
 			<handler function="OnMouseClick" entry="EVT_RIGHT_UP" />
 			<handler function="OnMouseMove" entry="EVT_MOTION" />
 		</object>
@@ -32,6 +33,9 @@
 			<fields>3</fields>
 			<widths>-1,-10,-10</widths>
 			<styles>wxSB_RAISED,wxSB_RAISED,wxSB_NORMAL</styles>
+		</object>
+		<object class="wxTimer" name="ID_TIMER1" variable="Timer1" member="yes">
+			<handler function="OnSingleClickTimer" entry="EVT_TIMER" />
 		</object>
 	</object>
 </wxsmith>

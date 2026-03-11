@@ -13,6 +13,7 @@
 //(*Headers(wxSFrame)
 #include <wx/frame.h>
 #include <wx/menu.h>
+#include <wx/panel.h>
 #include <wx/statusbr.h>
 //*)
 
@@ -31,9 +32,13 @@ class wxSFrame: public wxFrame
         void OnShowDate(wxCommandEvent& event);
         void OnShowVersion(wxCommandEvent& event);
         void OnMousePush(wxMouseEvent& event);
+        void OnMouseUse(wxMouseEvent& event);
+        void OnMouseKlik(wxMouseEvent& event);
+        void OnKlawisz(wxKeyEvent& event);
         //*)
 
         //(*Identifiers(wxSFrame)
+        static const long ID_PANEL1;
         static const long ID_SHOW_DATE;
         static const long ID_SHOW_VERSION;
         static const long ID_STATUSBAR1;
@@ -42,8 +47,11 @@ class wxSFrame: public wxFrame
         //(*Declarations(wxSFrame)
         wxMenuItem* MenuItem1;
         wxMenuItem* miData;
+        wxPanel* Panel1;
         wxStatusBar* StatusBar1;
         //*)
+
+        int licznik=0;
 
         DECLARE_EVENT_TABLE()
 };

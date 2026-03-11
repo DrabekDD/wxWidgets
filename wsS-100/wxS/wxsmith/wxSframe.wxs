@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <wxsmith>
 	<object class="wxFrame" name="wxSFrame">
-		<handler function="OnMousePush" entry="EVT_LEFT_DOWN" />
-		<handler function="OnMousePush" entry="EVT_LEFT_UP" />
-		<handler function="OnMousePush" entry="EVT_LEFT_DCLICK" />
-		<handler function="OnMousePush" entry="EVT_RIGHT_DOWN" />
-		<handler function="OnMousePush" entry="EVT_RIGHT_UP" />
+		<size>778,450</size>
+		<object class="wxPanel" name="ID_PANEL1" variable="Panel1" member="yes">
+			<pos>400,216</pos>
+			<size>608,328</size>
+			<focused>1</focused>
+			<handler function="OnMouseKlik" entry="EVT_LEFT_UP" />
+			<handler function="OnMouseKlik" entry="EVT_RIGHT_UP" />
+			<handler function="OnMouseUse" entry="EVT_MOTION" />
+		</object>
 		<object class="wxMenuBar" variable="MenuBar1" member="no">
 			<object class="wxMenu" variable="mInfo" member="no">
 				<label>&amp;Informacje</label>
@@ -23,7 +27,7 @@
 		<object class="wxStatusBar" name="ID_STATUSBAR1" variable="StatusBar1" member="yes">
 			<fields>3</fields>
 			<widths>-1,-10,-10</widths>
-			<styles>wxSB_NORMAL,wxSB_NORMAL,wxSB_NORMAL</styles>
+			<styles>wxSB_RAISED,wxSB_RAISED,wxSB_RAISED</styles>
 		</object>
 	</object>
 </wxsmith>

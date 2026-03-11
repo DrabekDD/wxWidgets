@@ -9,12 +9,15 @@
 
 #ifndef WXSMAIN_H
 #define WXSMAIN_H
+#include <wx/gdicmn.h>   //timer
+
 
 //(*Headers(wxSFrame)
 #include <wx/frame.h>
 #include <wx/menu.h>
 #include <wx/panel.h>
 #include <wx/statusbr.h>
+#include <wx/timer.h>
 //*)
 
 class wxSFrame: public wxFrame
@@ -38,15 +41,17 @@ class wxSFrame: public wxFrame
         void OnLeftDClick(wxMouseEvent& event);
         void OnResize(wxSizeEvent& event);
         void OnKeyDown(wxKeyEvent& event);
-        void OnTimer1Trigger(wxTimerEvent& event);
         void OnKeyPress(wxKeyEvent& event);
         void Onpanel1Paint(wxPaintEvent& event);
+        void OnMouseDclik(wxMouseEvent& event);
+        void OnSingleClickTimer(wxTimerEvent& event);
         //*)
         //(*Identifiers(wxSFrame)
         static const long ID_PANEL1;
         static const long ID_SHOW_DATE;
         static const long ID_SHOW_SYS_VERSION;
         static const long ID_STATUSBAR1;
+        static const long ID_TIMER1;
         //*)
 
         //(*Declarations(wxSFrame)
@@ -54,10 +59,13 @@ class wxSFrame: public wxFrame
         wxMenuItem* MenuItem3;
         wxPanel* panel1;
         wxStatusBar* StatusBar1;
+        wxTimer Timer1;
         //*)
 
         int licznik = 0;
 
+        //wxTimer m_clickTimer;
+        wxPoint m_clickPos;
 
         DECLARE_EVENT_TABLE()
 };
