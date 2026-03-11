@@ -79,7 +79,6 @@ wxSFrame::wxSFrame(wxWindow* parent,wxWindowID id)
     StatusBar1->SetStatusStyles(3,__wxStatusBarStyles_1);
     SetStatusBar(StatusBar1);
 
-    Panel1->Connect(wxEVT_KEY_UP,(wxObjectEventFunction)&wxSFrame::OnKlawisz,0,this);
     Panel1->Connect(wxEVT_LEFT_UP,(wxObjectEventFunction)&wxSFrame::OnMouseKlik,0,this);
     Panel1->Connect(wxEVT_RIGHT_UP,(wxObjectEventFunction)&wxSFrame::OnMouseKlik,0,this);
     Panel1->Connect(wxEVT_MOTION,(wxObjectEventFunction)&wxSFrame::OnMouseUse,0,this);

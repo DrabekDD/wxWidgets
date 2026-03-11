@@ -62,11 +62,8 @@ class wxSFrame: public wxFrame
         wxTimer Timer1;
         //*)
 
-        int licznik = 0;
-
-        //wxTimer m_clickTimer;
         wxPoint m_clickPos;
-
+        int licznik=0;
         DECLARE_EVENT_TABLE()
 };
 

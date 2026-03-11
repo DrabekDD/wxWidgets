@@ -6,8 +6,7 @@ wxW-004:  struktura i tworzenie menu
 wxW-005:  menu uproszczenie kodu
 wxW-006:  robimy toolbar
 wxW-007:  wzorzec okna --> 
-wxw-007a: używamy metod (funkcji)
+wxw-008:  używamy metod (funkcji) + obsługa zdażeń przez bind
 
-
-wxS-001:  = wxW-007
-
+wxS-001:  = wxW-007 tylko przy użyciu wxSmith
+wxS-002:  właczona obsługa zdarzeń elementów sterujących, myszki i klawiatury ---> wzorzec okno+zdarzenia

@@ -49,14 +49,12 @@
 			<Option compile="1" />
 			<Option weight="0" />
 		</Unit>
-		<Unit filename="wxsmith/Panel1.wxs" />
 		<Unit filename="wxsmith/wxSframe.wxs" />
 		<Extensions>
 			<wxsmith version="1">
 				<gui name="wxWidgets" src="wxSApp.cpp" main="wxSFrame" init_handlers="necessary" language="CPP" />
 				<resources>
 					<wxFrame wxs="wxsmith/wxSframe.wxs" src="wxSMain.cpp" hdr="wxSMain.h" fwddecl="0" i18n="1" name="wxSFrame" language="CPP" />
-					<wxPanel wxs="wxsmith/Panel1.wxs" src="Panel1.cpp" hdr="Panel1.h" fwddecl="0" i18n="1" name="Panel1" language="CPP" />
 				</resources>
 			</wxsmith>
 		</Extensions>

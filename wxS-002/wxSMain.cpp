@@ -57,28 +57,9 @@ BEGIN_EVENT_TABLE(wxSFrame,wxFrame)
     //EVT_CHAR_HOOK(wxSFrame::OnKeyPress)
 END_EVENT_TABLE()
 
-/* >>>>>>pojedynczy klik
-LeftUp
-zapis pozycji
-start timera 250 ms
-brak drugiego kliknięcia
-timer kończy odliczanie
-OnSingleClickTimer() pokazuje Lewy - klik
->>>>>>>>>>>dwuklik
-LeftUp
-zapis pozycji
-start timera 250 ms
-pojawia się LeftDClick
-timer zostaje zatrzymany
-OnLeftDClick() pokazuje Lewy - dwuklik
->>>>>>>>>>>>    Timer1.SetOwner(this, ID_TIMER1);
-wysyła zdarzenie wxEVT_TIMER
-do okna wxSFrame z identyfikatorem ID_TIMER1
-*/
-
 
 wxSFrame::wxSFrame(wxWindow* parent,wxWindowID id)
- //        :T imer1(this, ID_TIMER1)
+ //        :Timer1(this, ID_TIMER1)
  // to jest w sumie zbędne bo wxSmith wpisuje Timer1.SetOwner(this, ID_TIMER1);
 {
     //(*Initialize(wxSFrame)
@@ -116,16 +97,10 @@ wxSFrame::wxSFrame(wxWindow* parent,wxWindowID id)
     Connect(wxID_ANY,wxEVT_CLOSE_WINDOW,(wxObjectEventFunction)&wxSFrame::OnClose);
     Connect(wxEVT_SIZE,(wxObjectEventFunction)&wxSFrame::OnResize);
     //*)
-    //Connect(wxID_ANY, wxEVT_KEY_DOWN, (wxObjectEventFunction)&wxSFrame::OnKeyPress);
-    //Bind(wxEVT_CHAR_HOOK, &wxSFrame::OnKeyPress, this);
-    //Bind(wxEVT_KEY_DOWN, &wxSFrame::OnKeyPress, this);
-    //GlobalKeyEvtHandler::Register(this);
-    //Bind(wxEVT_KEY_DOWN, &wxSFrame::OnKeyPress, this);
-    //Bind(wxEVT_TIMER, &wxSFrame::OnSingleClickTimer, this);
-    //panel1->Bind(wxEVT_LEFT_UP, &wxSFrame::OnMouseClick, this);
-    //panel1->Bind(wxEVT_RIGHT_UP, &wxSFrame::OnMouseClick, this);
-    //panel1->Bind(wxEVT_LEFT_DCLICK, &wxSFrame::OnLeftDClick, this);
-    SetStatusText("Licznik: 0", 0);
+    //Timer1.SetOwner(this, ID_TIMER1) wysyła zdarzenie wxEVT_TIMER do okna wxSFrame z identyfikatorem ID_TIMER1
+
+    //Bind(wxEVT_CHAR_HOOK, &wxSFrame::OnKeyPress, this); //globalne czytanie klawiatury
+    //GlobalKeyEvtHandler::Register(this); //użycie global_kbd_event.h
 
     //poprawki nazw polskich
     SetTitle(wxString::FromUTF8("Użycie zdarzeń"));
@@ -139,6 +114,8 @@ wxSFrame::wxSFrame(wxWindow* parent,wxWindowID id)
     wxSize s = GetSize();
     SetStatusText(wxString::Format("Size: %dx%d", s.GetWidth(), s.GetHeight()), 2);
 
+    //parametry startowe
+    SetStatusText("Licznik: 0", 0);
     panel1->SetFocus();
     Raise();
 }
@@ -147,8 +124,8 @@ wxSFrame::~wxSFrame()
 {
     //(*Destroy(wxSFrame)
     //*)
-    //Unbind(wxEVT_KEY_DOWN, &wxSFrame::OnKeyPress, this);
-    //GlobalKeyEvtHandler::Unregister(this);
+    //Unbind(wxEVT_KEY_DOWN, &wxSFrame::OnKeyPress, this); //użycie global_kbd_event.h
+    //GlobalKeyEvtHandler::Unregister(this); //użycie global_kbd_event.h
 }
 
 void wxSFrame::OnQuit(wxCommandEvent& event)
@@ -194,17 +171,13 @@ void wxSFrame::OnClose(wxCloseEvent& event)
 void wxSFrame::OnKeyPress(wxKeyEvent& event)
 {
     int key = event.GetKeyCode();
-
     if (key == WXK_LEFT)       licznik--;
     else if (key == WXK_RIGHT) licznik++;
     else if (key == 'R' || key == 'r') licznik = 0;
     else if (key == WXK_ESCAPE) { Close(); return; }
     else { event.Skip(); return; }
-
     SetStatusText(wxString::Format("Licznik: %d", licznik), 0);
 }
-
-
 
 void wxSFrame::OnResize(wxSizeEvent& event)
 {
@@ -214,33 +187,33 @@ void wxSFrame::OnResize(wxSizeEvent& event)
 }
 
 void wxSFrame::OnMouseClick(wxMouseEvent& event)
+/* >>>>>> pojedynczy lewy klik >> LeftUp >> zapis pozycji >> start timera 250 ms >> brak drugiego kliknięcia >>
+          timer kończy odliczanie >> uruchamia się zdarzenie zwiazane z timerem OnSingleClickTimer()
+   >>>>>> pojedynczy prawy klik >> MBox z informacją o kliknięciu prawego klawisza
+*/
 {
-    if (event.LeftUp())
-    {
+    if (event.LeftUp()){
         m_clickPos = event.GetPosition();
         Timer1.StartOnce(250);
-    }
-    else if (event.RightUp())
-    {
-        wxMessageBox(
-            wxString::Format("Przycisk: Prawy - klik\nPozycja: %d, %d",
-                             event.GetX(), event.GetY()),"Informacja");
+    } else if (event.RightUp()) {
+        wxMessageBox(wxString::Format("Przycisk: Prawy - klik\nPozycja: %d, %d",
+                     event.GetX(), event.GetY()),"Informacja");
     }
 }
 
 void wxSFrame::OnLeftDClick(wxMouseEvent& event)
+/*>>>>>>>>>>> dwuklik >> działa LeftUp (z pierwszeko kliku) >> zapis pozycji >> start timera 250 ms >>
+            pojawia się LeftDClick >> timer zostaje zatrzymany >> OnLeftDClick() pokazuje Lewy-dwuklik (MBox)
+*/
 {
     if (Timer1.IsRunning())
         Timer1.Stop();
-
-    wxMessageBox(
-        wxString::Format("Przycisk: Lewy - dwuklik\nPozycja: %d, %d",
-                         event.GetX(), event.GetY()),"Informacja");
+    wxMessageBox(wxString::Format("Przycisk: Lewy - dwuklik\nPozycja: %d, %d",
+                 event.GetX(), event.GetY()),"Informacja");
 }
 
 void wxSFrame::OnSingleClickTimer(wxTimerEvent& event)
 {
-    wxMessageBox(
-        wxString::Format("Przycisk: Lewy - klik\nPozycja: %d, %d",
-                         m_clickPos.x, m_clickPos.y),"Informacja");
+    wxMessageBox(wxString::Format("Przycisk: Lewy - klik\nPozycja: %d, %d",
+                 m_clickPos.x, m_clickPos.y),"Informacja");
 }
