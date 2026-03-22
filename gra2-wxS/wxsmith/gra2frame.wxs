@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<wxsmith>
+	<object class="wxFrame" name="gra2Frame">
+		<title>ZGADNIJ LICZBE</title>
+		<size>361,450</size>
+		<id_arg>0</id_arg>
+		<object class="wxPanel" name="ID_PANEL1" variable="Panel1" member="yes">
+			<pos>224,200</pos>
+			<object class="wxBoxSizer" variable="mainS" member="no">
+				<orient>wxVERTICAL</orient>
+				<object class="sizeritem">
+					<object class="wxStaticText" name="ID_STATICTEXT3" variable="StaticText3" member="yes">
+						<label>&#x0A;Wybierz zakres z jakiego bedzie losowana liczba</label>
+						<size>370,36</size>
+						<style>wxALIGN_LEFT|wxFULL_REPAINT_ON_RESIZE</style>
+					</object>
+					<flag>wxALL|wxEXPAND</flag>
+					<border>5</border>
+				</object>
+				<object class="sizeritem">
+					<object class="wxBoxSizer" variable="BoxSizer1" member="no">
+						<object class="sizeritem">
+							<object class="wxStaticText" name="ID_STATICTEXT1" variable="StaticText1" member="yes">
+								<label> Od: </label>
+								<pos>-1,-1</pos>
+								<size>31,19</size>
+							</object>
+							<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+							<border>5</border>
+						</object>
+						<object class="sizeritem">
+							<object class="wxTextCtrl" name="ID_TEXT_OD" variable="ctrlOd" member="yes">
+								<value>0</value>
+								<size>70,31</size>
+							</object>
+							<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+							<border>5</border>
+							<option>6</option>
+						</object>
+						<object class="spacer">
+							<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+							<border>5</border>
+							<option>1</option>
+							<size>9,7</size>
+						</object>
+						<object class="sizeritem">
+							<object class="wxStaticText" name="ID_STATICTEXT2" variable="StaticText2" member="yes">
+								<label>Do: </label>
+							</object>
+							<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+							<border>5</border>
+							<option>1</option>
+						</object>
+						<object class="sizeritem">
+							<object class="wxTextCtrl" name="ID_TEXT_DO" variable="ctrlDo" member="yes">
+								<value>100</value>
+								<size>78,31</size>
+							</object>
+							<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+							<border>5</border>
+							<option>6</option>
+						</object>
+					</object>
+					<flag>wxALL</flag>
+					<border>5</border>
+				</object>
+				<object class="sizeritem">
+					<object class="wxStaticText" name="ID_STATICTEXT4" variable="StaticText4" member="yes">
+						<label>Wybierz poziom</label>
+						<size>301,20</size>
+						<style>wxST_NO_AUTORESIZE|wxALIGN_LEFT|wxBORDER_NONE</style>
+					</object>
+					<flag>wxALL|wxEXPAND</flag>
+					<border>5</border>
+				</object>
+				<object class="sizeritem">
+					<object class="wxComboBox" name="ID_COMBO_POZIOM" variable="comboPoziom" member="yes">
+						<content>
+							<item>prosty (10 prob)</item>
+							<item>sredni (7 prob)</item>
+							<item>trudny (5 prob)</item>
+						</content>
+						<selection>0</selection>
+						<size>347,37</size>
+						<handler function="OncomboPoziom" entry="EVT_COMBOBOX" />
+					</object>
+					<flag>wxALL|wxEXPAND</flag>
+					<border>5</border>
+				</object>
+				<object class="sizeritem">
+					<object class="wxStaticText" name="ID_STATICTEXT5" variable="StaticText5" member="yes">
+						<label>Podaj twoja liczbe</label>
+					</object>
+					<flag>wxALL|wxEXPAND</flag>
+					<border>5</border>
+				</object>
+				<object class="sizeritem">
+					<object class="wxTextCtrl" name="ID_TEXT_PROBA" variable="ctrlProba" member="yes">
+						<handler function="OnSprawdz" entry="EVT_TEXT_ENTER" />
+					</object>
+					<flag>wxALL|wxEXPAND</flag>
+					<border>5</border>
+				</object>
+				<object class="sizeritem">
+					<object class="wxBoxSizer" variable="BoxSizer2" member="no">
+						<object class="sizeritem">
+							<object class="wxButton" name="ID_BUTT_SPRAWDZ" variable="butSprawdz" member="yes">
+								<label>Sprawdz</label>
+								<enabled>0</enabled>
+								<handler function="OnSprawdz" entry="EVT_BUTTON" />
+							</object>
+							<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+							<border>5</border>
+							<option>1</option>
+						</object>
+						<object class="sizeritem">
+							<object class="wxButton" name="ID_BUT_NEW_GAME" variable="butNewGame" member="yes">
+								<label>Nowa  gra</label>
+								<handler function="OnNewGame" entry="EVT_BUTTON" />
+							</object>
+							<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+							<border>5</border>
+							<option>1</option>
+						</object>
+					</object>
+					<flag>wxALL|wxEXPAND</flag>
+					<border>5</border>
+				</object>
+				<object class="sizeritem">
+					<object class="wxStaticText" name="ID_LBL_PROBA" variable="lblProba" member="yes">
+						<label>a</label>
+						<size>351,22</size>
+					</object>
+					<flag>wxALL|wxEXPAND</flag>
+					<border>5</border>
+				</object>
+				<object class="sizeritem">
+					<object class="wxStaticText" name="ID_LBL_WYNIK" variable="lblWynik" member="yes">
+						<label>b</label>
+					</object>
+					<flag>wxALL|wxEXPAND</flag>
+					<border>5</border>
+				</object>
+			</object>
+		</object>
+	</object>
+</wxsmith>
