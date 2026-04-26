@@ -15,6 +15,7 @@
 #include <wx/combobox.h>
 #include <wx/frame.h>
 #include <wx/panel.h>
+#include <wx/richtext/richtextctrl.h>
 #include <wx/sizer.h>
 #include <wx/stattext.h>
 #include <wx/textctrl.h>
@@ -36,6 +37,7 @@ class gra2Frame: public wxFrame
         void OnNewGame(wxCommandEvent& event);
         void OncomboPoziom(wxCommandEvent& event);
         void OnSprawdz(wxCommandEvent& event);
+        void OnCheckListBox1Toggled(wxCommandEvent& event);
         //*)
 
         //(*Identifiers(gra2Frame)
@@ -52,6 +54,7 @@ class gra2Frame: public wxFrame
         static const long ID_BUT_NEW_GAME;
         static const long ID_LBL_PROBA;
         static const long ID_LBL_WYNIK;
+        static const long ID_RICHTEXTCTRL1;
         static const long ID_PANEL1;
         //*)
 
@@ -60,6 +63,7 @@ class gra2Frame: public wxFrame
         wxButton* butSprawdz;
         wxComboBox* comboPoziom;
         wxPanel* Panel1;
+        wxRichTextCtrl* RichTextCtrl1;
         wxStaticText* StaticText1;
         wxStaticText* StaticText2;
         wxStaticText* StaticText3;
@@ -75,10 +79,10 @@ class gra2Frame: public wxFrame
         bool ReadRange(int& fromx, int& toy);
         void UstawPoziom();
 
-        int proba=0;                 // aktualna liczba prób
+        int proba=0;                  // aktualna liczba prób
         int maxproba=10;              // maksymalna liczba prób
-        int los;                   // wylosowana liczba
-        bool gameActive;           // czy gra aktualnie trwa
+        int los;                      // wylosowana liczba
+        bool gameActive;              // czy gra aktualnie trwa
 
         DECLARE_EVENT_TABLE()
 };

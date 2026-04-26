@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<wxsmith>
+	<object class="wxFrame" name="wxSgrafEuklidesFrame">
+		<size>400,545</size>
+		<id_arg>0</id_arg>
+		<object class="wxPanel" name="ID_PANEL1" variable="Panel1" member="yes">
+			<object class="wxBoxSizer" variable="BoxSizer1" member="no">
+				<orient>wxVERTICAL</orient>
+				<object class="sizeritem">
+					<object class="wxStaticText" name="ID_STATICTEXT1" variable="StaticText1" member="yes">
+						<label>Algorytm Euklidesa - graficznie</label>
+						<size>397,38</size>
+						<font>
+							<size>13</size>
+							<style>normal</style>
+							<weight>bold</weight>
+							<underlined>0</underlined>
+							<family>default</family>
+							<face>Sawasdee</face>
+						</font>
+						<style>wxALIGN_CENTRE</style>
+					</object>
+					<flag>wxALL</flag>
+					<border>25</border>
+				</object>
+				<object class="sizeritem">
+					<object class="wxStaticText" name="ID_STATICTEXT2" variable="StaticText2" member="yes">
+						<label>    Podaj liczy, ktorych NWD chcesz policzyc</label>
+					</object>
+					<flag>wxALL|wxEXPAND</flag>
+					<border>5</border>
+				</object>
+				<object class="sizeritem">
+					<object class="wxBoxSizer" variable="BoxSizer2" member="no">
+						<object class="sizeritem">
+							<object class="wxStaticText" name="ID_STATICTEXT3" variable="StaticText3" member="yes">
+								<label>    m: </label>
+							</object>
+							<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+							<border>5</border>
+						</object>
+						<object class="sizeritem">
+							<object class="wxTextCtrl" name="ID_TEXM" variable="txtM" member="yes">
+								<value>10946</value>
+							</object>
+							<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+							<border>5</border>
+							<option>1</option>
+						</object>
+						<object class="spacer">
+							<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+							<border>5</border>
+							<size>29,2</size>
+						</object>
+						<object class="sizeritem">
+							<object class="wxStaticText" name="ID_STATICTEXT4" variable="StaticText4" member="yes">
+								<label>n: </label>
+							</object>
+							<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+							<border>5</border>
+						</object>
+						<object class="sizeritem">
+							<object class="wxTextCtrl" name="ID_TEXTN" variable="txtN" member="yes">
+								<value>6765</value>
+							</object>
+							<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+							<border>5</border>
+							<option>1</option>
+						</object>
+					</object>
+					<flag>wxALL|wxALIGN_LEFT</flag>
+					<border>5</border>
+				</object>
+				<object class="sizeritem">
+					<object class="wxButton" name="ID_BTNNWD" variable="bntNWD" member="yes">
+						<label>Oblicz NWD</label>
+						<handler function="OnbntNWDClick" entry="EVT_BUTTON" />
+					</object>
+					<flag>wxLEFT|wxALIGN_LEFT</flag>
+					<border>25</border>
+				</object>
+				<object class="sizeritem">
+					<object class="wxTextCtrl" name="ID_TEXEUK" variable="txtEuk" member="yes">
+						<size>390,245</size>
+						<style>wxTE_MULTILINE|wxTE_READONLY|wxTE_RIGHT|wxWANTS_CHARS|wxVSCROLL|wxHSCROLL</style>
+					</object>
+					<flag>wxALL|wxEXPAND</flag>
+					<border>25</border>
+				</object>
+				<object class="sizeritem">
+					<object class="wxStaticText" name="ID_LBLNWD" variable="lblNWD" member="yes">
+						<label>NWD = 1</label>
+					</object>
+					<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+				</object>
+			</object>
+		</object>
+	</object>
+</wxsmith>

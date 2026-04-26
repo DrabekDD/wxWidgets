@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<wxsmith>
+	<object class="wxFrame" name="stery01Frame">
+		<object class="wxGridSizer" variable="GridSizer1" member="no">
+			<cols>3</cols>
+			<rows>3</rows>
+			<object class="sizeritem">
+				<object class="wxListCtrl" name="ID_LISTCTRL2" variable="ListCtrl2" member="yes">
+					<size>334,107</size>
+					<enabled>0</enabled>
+					<handler function="OnListCtrl2BeginDrag" entry="EVT_LIST_BEGIN_DRAG" />
+				</object>
+				<flag>wxTOP|wxBOTTOM|wxRIGHT|wxALIGN_RIGHT|wxALIGN_BOTTOM</flag>
+				<border>3d</border>
+			</object>
+			<object class="sizeritem">
+				<object class="wxListBox" name="ID_LISTBOX1" variable="ListBox1" member="yes">
+					<content>
+						<item>raz</item>
+						<item>dwa</item>
+						<item>trzy</item>
+					</content>
+					<default>-1</default>
+					<size>200,131</size>
+				</object>
+				<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+				<border>5</border>
+				<option>1</option>
+			</object>
+			<object class="sizeritem">
+				<object class="wxListCtrl" name="ID_LISTCTRL1" variable="ListCtrl1" member="yes" />
+				<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+				<border>5</border>
+				<option>1</option>
+			</object>
+		</object>
+	</object>
+</wxsmith>

@@ -56,6 +56,7 @@ const long gra2Frame::ID_BUTT_SPRAWDZ = wxNewId();
 const long gra2Frame::ID_BUT_NEW_GAME = wxNewId();
 const long gra2Frame::ID_LBL_PROBA = wxNewId();
 const long gra2Frame::ID_LBL_WYNIK = wxNewId();
+const long gra2Frame::ID_RICHTEXTCTRL1 = wxNewId();
 const long gra2Frame::ID_PANEL1 = wxNewId();
 //*)
 
@@ -110,6 +111,9 @@ gra2Frame::gra2Frame(wxWindow* parent,wxWindowID id)
     mainS->Add(lblProba, 0, wxALL|wxEXPAND, 5);
     lblWynik = new wxStaticText(Panel1, ID_LBL_WYNIK, _("b"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_LBL_WYNIK"));
     mainS->Add(lblWynik, 0, wxALL|wxEXPAND, 5);
+    wxRichTextAttr rchtxtAttr_1;
+    rchtxtAttr_1.SetBulletStyle(wxTEXT_ATTR_BULLET_STYLE_ALIGN_LEFT);
+    mainS->Add(RichTextCtrl1, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     Panel1->SetSizer(mainS);
     mainS->Fit(Panel1);
     mainS->SetSizeHints(Panel1);
@@ -119,6 +123,7 @@ gra2Frame::gra2Frame(wxWindow* parent,wxWindowID id)
     Connect(ID_BUTT_SPRAWDZ,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&gra2Frame::OnSprawdz);
     Connect(ID_BUT_NEW_GAME,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&gra2Frame::OnNewGame);
     //*)
+
     lblWynik->SetLabel("Wybierz poziom i kliknij 'Nowa gra'."); // informacja dla użytkownika
     lblProba->SetLabel(wxString::Format("Proby: %d / %d", proba, maxproba));
     butNewGame->SetFocus();
@@ -175,8 +180,10 @@ void gra2Frame::OnNewGame(wxCommandEvent& event)
 {
     int fromx = 1;                                                                  // domyślny początek zakresu
     int toy = 100;                                                                  // domyślny koniec zakresu
+    // tu sobie napisze jak zmienić zakres
     if (!ReadRange(fromx, toy))                                                     // próba odczytu zakresu
     return;                                                                         // przerwanie przy błędzie
+    // tu sobie ustawie poziom trudności czyli zmienną maxproba
     UstawPoziom();                                                                  // ustawienie trudności
     los = fromx + (std::rand() % (toy - fromx + 1));                                // losowanie liczby z zakresu
     proba = 0;                                                                      // wyzerowanie prób
@@ -244,3 +251,6 @@ void gra2Frame::OnSprawdz(wxCommandEvent& event)
     ctrlProba->SelectAll();
 
 }
+
+
+
