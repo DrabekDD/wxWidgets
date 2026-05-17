@@ -84,14 +84,23 @@
 						<size>390,245</size>
 						<style>wxTE_MULTILINE|wxTE_READONLY|wxTE_RIGHT|wxWANTS_CHARS|wxVSCROLL|wxHSCROLL</style>
 					</object>
-					<flag>wxALL|wxEXPAND</flag>
+					<flag>wxTOP|wxLEFT|wxRIGHT|wxEXPAND</flag>
 					<border>25</border>
 				</object>
 				<object class="sizeritem">
-					<object class="wxStaticText" name="ID_LBLNWD" variable="lblNWD" member="yes">
-						<label>NWD = 1</label>
+					<object class="wxBoxSizer" variable="BoxSizer3" member="no">
+						<object class="sizeritem">
+							<object class="wxStaticText" name="ID_LBLNWD" variable="lblNWD" member="yes">
+								<label>NWD = 1</label>
+								<size>378,19</size>
+								<style>wxALIGN_CENTRE</style>
+							</object>
+							<flag>wxTOP|wxBOTTOM|wxEXPAND</flag>
+							<border>15</border>
+						</object>
 					</object>
-					<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+					<flag>wxALL|wxEXPAND</flag>
+					<border>2</border>
 				</object>
 			</object>
 		</object>

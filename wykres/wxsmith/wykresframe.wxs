@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<wxsmith>
+	<object class="wxFrame" name="wykresFrame">
+		<size>1042,541</size>
+		<object class="wxPanel" name="ID_PANEL" variable="Panel" member="yes">
+			<pos>496,304</pos>
+			<handler function="OnPanelPaint" entry="EVT_PAINT" />
+		</object>
+		<object class="wxMenuBar" variable="MenuBar1" member="no">
+			<object class="wxMenu" variable="Menu2" member="no">
+				<label>Funkcja</label>
+				<object class="wxMenuItem" name="ID_SIN" variable="Menu1" member="yes">
+					<label>y = sin(x)</label>
+					<handler function="OnSin" entry="EVT_MENU" />
+				</object>
+				<object class="wxMenuItem" name="ID_COS" variable="MenuItem1" member="yes">
+					<label>y = cos(x)</label>
+					<handler function="OnCos" entry="EVT_MENU" />
+				</object>
+				<object class="wxMenuItem" name="ID_TG" variable="MenuItem2" member="yes">
+					<label>y = tg(x)</label>
+					<handler function="OnTg" entry="EVT_MENU" />
+				</object>
+				<object class="wxMenuItem" name="ID_CTG" variable="MenuItem3" member="yes">
+					<label>y = ctg(x)</label>
+					<handler function="OnCtg" entry="EVT_MENU" />
+				</object>
+			</object>
+		</object>
+	</object>
+</wxsmith>

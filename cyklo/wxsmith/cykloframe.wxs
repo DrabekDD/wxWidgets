@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<wxsmith>
+	<object class="wxFrame" name="cykloFrame">
+		<size>1000,500</size>
+		<object class="wxPanel" name="ID_PANEL" variable="Panel" member="yes">
+			<pos>264,280</pos>
+			<handler function="OnPanelPaint" entry="EVT_PAINT" />
+			<object class="wxChoice" name="ID_CHOICE_CYKLO" variable="ChoiceCyklo" member="yes">
+				<content>
+					<item>Cykloida</item>
+					<item>Cykloida skrocona</item>
+					<item>Epicykloida</item>
+					<item>Hipocykloida</item>
+				</content>
+				<pos>32,32</pos>
+				<size>272,30</size>
+				<handler function="OnChoiceCykloSelect" entry="EVT_CHOICE" />
+			</object>
+		</object>
+		<object class="wxTimer" name="ID_TIMER_CYKLO" variable="TimerCyklo" member="yes">
+			<handler function="OnTimerTrigger" entry="EVT_TIMER" />
+		</object>
+	</object>
+</wxsmith>

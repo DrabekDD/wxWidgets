@@ -91,7 +91,7 @@ wxSgrafEuklidesFrame::wxSgrafEuklidesFrame(wxWindow* parent,wxWindowID id)
     BoxSizer1->Add(BoxSizer2, 0, wxALL|wxALIGN_LEFT, 5);
     bntNWD = new wxButton(Panel1, ID_BTNNWD, _("Oblicz NWD"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BTNNWD"));
     BoxSizer1->Add(bntNWD, 0, wxLEFT|wxALIGN_LEFT, 25);
-    txtEuk = new wxTextCtrl(Panel1, ID_TEXEUK, wxEmptyString, wxDefaultPosition, wxSize(390,245), wxTE_MULTILINE|wxTE_READONLY|wxTE_RIGHT|wxWANTS_CHARS|wxVSCROLL|wxHSCROLL, wxDefaultValidator, _T("ID_TEXEUK"));
+    txtEuk = new wxTextCtrl(Panel1, ID_TEXEUK, wxEmptyString, wxDefaultPosition, wxSize(390,245), wxTE_MULTILINE|wxTE_READONLY|wxTE_RIGHT|wxVSCROLL|wxHSCROLL, wxDefaultValidator, _T("ID_TEXEUK"));
     BoxSizer1->Add(txtEuk, 0, wxTOP|wxLEFT|wxRIGHT|wxEXPAND, 25);
     BoxSizer3 = new wxBoxSizer(wxHORIZONTAL);
     lblNWD = new wxStaticText(Panel1, ID_LBLNWD, _("NWD = 1"), wxDefaultPosition, wxSize(378,19), wxALIGN_CENTRE, _T("ID_LBLNWD"));
@@ -138,7 +138,7 @@ void wxSgrafEuklidesFrame::OnbntNWDClick(wxCommandEvent& event)
     while (y != 0){
         r = x % y;
         linia = wxString::Format("%ld = %ld * %ld + %ld", x, y, x / y, r);
-        txtEuk->AppendText(linia + "    \n");
+        txtEuk->AppendText(linia + "\n");
         x = y;
         y = r;
     }
